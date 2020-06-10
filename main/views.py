@@ -17,7 +17,8 @@ def index(response, id):
         if response.POST.get("delete"):
             for item in ls.item_set.all():
                 if response.POST.get("c" + str(item.id)) == "checked":
-                    pass
+                    d = ls.item_set.get(id=item.id)
+                    d.delete()
                 else:
                     print("Please select a item to delete")
 
@@ -29,19 +30,22 @@ def index(response, id):
                 ls.item_set.create(item_name=text, price=p)
             else:
                 print("Insert Valid Data")
-                
+
 
     return render(response, "main/list.html", {"ls":ls})
 
 def create(response):
     if response.method == "POST":
-        form=createnewlist(response.POST)
+        form = createnewlist(response.POST)
 
         if form.is_valid():
             n = form.cleaned_data["name"]
             e = ExpensesList(name=n)
             e.save()
 
+        return render(response, "main/create.html", {"form":form})
+
     else:
         form = createnewlist()
-        return render(response, "main/create.html", {"form":form})
+
+    return render(response, "main/create.html", {"form":form})

@@ -2,12 +2,65 @@
 <html>
 
   <head>
+      <script src="https://kit.fontawesome.com/58fb0d3b26.js"></script>
+      <style type="text/css">
+
+          .sidebar{
+            height: 100%;
+            width: 160px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #494747;
+            overflow-x: hidden;
+            padding-top: 30px;
+            padding-bottom: 30px;
+          }
+
+          .sidebar a{
+            text-align: center;
+            text-decoration: none;
+            font-size: 20px;
+            display: block;
+            padding-bottom: 30px;
+            color: #F1F1F1;
+          }
+
+          .sidebar a:hover{
+            color: #2CDCF4;
+          }
+
+          .sidebar i{
+            text-align: center;
+            display: block;
+            padding-bottom: 5px;
+            color: #F1F1F1;
+          }
+
+          .sidebar i:hover{
+            color: #2CDCF4;
+          }
+
+          .main{
+            margin-left: 160px;
+            padding: 0px 10px;
+          }
+
+      </style>
+
       <title>{% block title %}Expenses List{% endblock %}</title>
   </head>
 
   <body>
 
-    <div id="content", name="content">
+    <div class="sidebar">
+            <a href="/"><i class="fas fa-home"></i>Home</a>
+            <a href="/create"><i class="far fa-plus-square"></i>Create List</a>
+            <a href="/4"><i class="fas fa-search"></i>View</a>
+    </div>
+
+    <div id="content", name="content", class="main">
       {% block content %}
       {% endblock %}
     </div>
