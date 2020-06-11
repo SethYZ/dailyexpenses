@@ -3,21 +3,44 @@
 {% block title %}View List{% endblock %}
 
 {% block content %}
-    <h1>{{ls.name}}</h1>
+    <h3>{{ls.name}}</h3><br>
     <form action="#" method="post">
         {% csrf_token %}
+        {% for item in ls.item_set.all %}
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" name="UpdateItemName" value="{{item.item_name}}">
+                    <div class="input-group-append">
+                        <input type="text" class="form-control" name="UpdateItemPrice" value="{{item.price}}">
+                    </div>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                          <input type="checkbox" name="c{{item.id}}" value="checked"/>
+                        </div>
+                    </div>
+            </div>
+        {% endfor %}
 
-        <ol>
-          {% for item in ls.item_set.all %}
-          <li>{{item.item_name}}&nbsp&nbsp&nbsp - &nbsp&nbsp&nbsp{{item.price}}
-          <input type="checkbox" name="c{{item.id}}" value="checked"></li><br>
-          {% endfor %}
-        </ol>
+        <br><button class="btn btn-primary" type="submit" name="update" value="update">Save</button>
+        <button class="btn btn-primary" type="submit" name="delete" value="delete">Delete</button><br><br>
 
-        <br><br><button type="submit" name="delete" value="delete">Delete</button><br><br>
+        <br><br><br><h3>Add New Item</h3><br>
+        <div class="input-group mb-3">
 
-        <h1>Add New Item</h1>
-        Item:<input type="text" name="AddItem"/>&nbsp&nbsp&nbsp Price:<input type="text" name="AddPrice"/>
-        <button type="submit" name="newItem" value="newItem">Add Item</button>
+            <div class="input-group-prepend">
+                <span class="input-group-text">Item: </span>
+            </div>
+            <input type="text" class="form-control" name="AddItem"/>
+
+            <div class="input-group-prepend">
+                <span class="input-group-text">Price: </span>
+            </div>
+
+            <div class="input-group-append">
+                <input type="text" class="form-control" name="AddPrice"/>
+            </div>
+
+            &nbsp&nbsp&nbsp&nbsp&nbsp<button class="btn btn-success" type="submit" name="newItem" value="newItem">Add Item</button>
+
+        </div>
     </form>
 {% endblock %}

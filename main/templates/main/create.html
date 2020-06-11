@@ -3,10 +3,10 @@
 {% block title %} Create Page {% endblock %}
 
 {% block content %}
-<h1>Create New List</h1>
+<h2>Create New List</h2><br>
   <form action="/create/" method="post">
       {% csrf_token %}
       {{form.as_p}}
-      <button type="submit" name="create">Create</button>
+      <button type="submit" name="create" class="btn btn-primary">Create</button>
   </form>
 {% endblock %}

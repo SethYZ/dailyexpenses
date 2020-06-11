@@ -14,6 +14,20 @@ def index(response, id):
     if response.method == "POST":
         print(response.POST)
 
+#        if response.POST.get("update"):
+#            for item in ls.item_set.all():
+#                if response.POST.get("UpdateItemName") != "" and response.POST.get("UpdateItemPrice") != 0:
+#                    newName = response.POST.get("UpdateItemName")
+#                    newPrice = response.POST.get("UpdateItemPrice")
+#
+#                    item.item_name = newName
+#                    item.price = newPrice
+#
+#                    item.save()
+#
+#            else:
+#                    print("Please insert a valid name!")
+
         if response.POST.get("delete"):
             for item in ls.item_set.all():
                 if response.POST.get("c" + str(item.id)) == "checked":
@@ -29,7 +43,7 @@ def index(response, id):
             if len(text) > 2:
                 ls.item_set.create(item_name=text, price=p)
             else:
-                print("Insert Valid Data")
+                print("Insert A Valid Data")
 
 
     return render(response, "main/list.html", {"ls":ls})
