@@ -54,8 +54,7 @@ def create(response):
 
         if form.is_valid():
             n = form.cleaned_data["name"]
-            e = ExpensesList(name=n)
-            e.save()
+            response.user.ExpensesList_set.create(name="n")
 
         return render(response, "main/create.html", {"form":form})
 
@@ -63,3 +62,6 @@ def create(response):
         form = createnewlist()
 
     return render(response, "main/create.html", {"form":form})
+
+def view(response):
+    pass
