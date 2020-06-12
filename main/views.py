@@ -22,7 +22,7 @@ def index(response, id):
 #
 #                    item.item_name = newName
 #                    item.price = newPrice
-#
+
 #                    item.save()
 #
 #            else:
