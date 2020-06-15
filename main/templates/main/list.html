@@ -3,7 +3,11 @@
 {% block title %}View List{% endblock %}
 
 {% block content %}
-    <h3>{{ls.name}}</h3><br>
+    <div class="row justify-content-center">
+        <div class="col-5">
+
+{% block contenttitle %}<h3>{{ls.name}}</h3><br>{% endblock %}
+
     <form action="#" method="post">
         {% csrf_token %}
         {% for item in ls.item_set.all %}
@@ -39,8 +43,13 @@
                 <input type="text" class="form-control" name="AddPrice"/>
             </div>
 
-            &nbsp&nbsp&nbsp&nbsp&nbsp<button class="btn btn-success" type="submit" name="newItem" value="newItem">Add Item</button>
+            &nbsp&nbsp&nbsp&nbsp<button class="btn btn-success" type="submit" name="newItem" value="newItem">Add Item</button>
 
         </div>
+        <br><br>
+        <a href="{% url 'home' %}" class="btn btn-secondary" role="button">Back to Homepage</a>
     </form>
+
+       </div>
+    </div>
 {% endblock %}

@@ -56,12 +56,13 @@ def create(response):
             n = form.cleaned_data["name"]
             response.user.ExpensesList_set.create(name="n")
 
+
         return render(response, "main/create.html", {"form":form})
 
     else:
         form = createnewlist()
 
-    return render(response, "main/create.html", {"form":form})
+        return render(response, "main/create.html", {"form":form})
 
-def view(response):
-    pass
+def list(response):
+    return render(response, "main/list.html", {})

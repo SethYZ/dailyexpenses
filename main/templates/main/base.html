@@ -3,11 +3,12 @@
 
   <head>
       <script src="https://kit.fontawesome.com/58fb0d3b26.js"></script>
+
       <style type="text/css">
 
           .sidebar{
             height: 100%;
-            width: 160px;
+            width: 140px;
             position: fixed;
             z-index: 1;
             top: 0;
@@ -39,9 +40,15 @@
             color: #F1F1F1;
           }
 
+          .sidebar label{
+            margin-top: 180px;
+            color: white;
+            font-size: 16px;
+          }
+
           .main{
-            margin-left: 160px;
-            padding: 0px 10px;
+              padding: 0px 10px;
+              background-color: #913CF7;
           }
 
       </style>
@@ -56,29 +63,40 @@
   </head>
 
   <body>
-
-    <div class="sidebar">
-            <a href="/" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
-              <i class="fas fa-home"></i>Home</a>
-            <a href="/create" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
+      {% block sidenav %}
+      <div class="sidebar">
+          <a href="/" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
+            <i class="fas fa-home"></i>Home</a>
+          <a href="/create" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
               <i class="far fa-plus-square"></i>Create List</a>
-            <a href="/view" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
-              <i class="fas fa-search"></i>View</a>
-    </div>
+          <a href="/view" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
+                <i class="fas fa-search"></i>View</a>
 
-    <div name="content", class="main">
-        <div class="row justify-content-center">
-            <div class="col-6">
-                {% block contenttitle %}
-                <h2 class="mt-2">My Site</h2>
-                <hr class="mt-0 mb-4">
-                {% endblock %}
+          <div class="col text-center">
+              {% if user.is_authenticated %}
+              <label>User:[{{ user.get_username }}] </lable>
+              <a href="{% url 'logout'%}" class="btn btn-secondary">Logout</a>
+              {% else %}
+              <label></lable>
+              <a href="{% url 'login'%}?next={{request.path}}" class="btn btn-secondary">Login</a>
+              {% endif %}
+          </div>
 
-                    {% block content %}
-                    {% endblock %}
-            </div>
-        </div>
-    </div>
+      </div>
+      {% endblock %}
+
+          <div name="content" class="main">
+              <div class="row justify-content-center">
+                  <div class="col-6">
+                      {% block contenttitle %}
+                      <h2 class="mt-2">My Site</h2>
+                      <hr class="mt-0 mb-4">
+                      {% endblock %}
+                  </div>
+                      {% block content %}
+                      {% endblock %}
+              </div>
+          </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -87,3 +105,6 @@
   </body>
 
 </html>
+
+<!--
+<a href="{% url 'logout'%}?next={{request.path}}"   -->

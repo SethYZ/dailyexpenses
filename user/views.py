@@ -17,5 +17,8 @@ def register(response):
 
 
 def login(response):
-    if response.method == "POST":
-        pass
+    return render(response, "registration/login.html", {})
+
+
+def logout(response):
+    return render(response, "registration/logged_out.html", {})

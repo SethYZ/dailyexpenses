@@ -2,15 +2,24 @@
 
 {% block title %} Create List {% endblock %}
 
-{% block contenttitle %}
-  <br><br><h2>Create New List</h2><br>
-  <hr class="mt-0 mb-4">
-{% endblock %}
-
 {% block content %}
-  <form action="/create/" method="post">
-      {% csrf_token %}
-      {{form.as_p}}
-      <button type="submit" name="create" class="btn btn-primary">Create</button>
-  </form>
+   <div class="row justify-content-center">
+      <div class="col-3">
+
+      {% block contenttitle %}
+      <br><br><h2>Create New List</h2><br>
+      <hr class="mt-0 mb-4">
+      {% endblock %}
+
+      <form action="/create/" method="post">
+          {% csrf_token %}
+          {{form.as_p}}
+
+          <button type="submit" name="create" class="btn btn-primary">Create</button>
+          <a href="{% url 'home' %}" class="btn btn-secondary" role="button">Back to Homepage</a>
+
+      </form>
+
+       </div>
+   </div>
 {% endblock %}
