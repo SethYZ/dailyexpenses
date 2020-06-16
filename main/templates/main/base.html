@@ -1,57 +1,9 @@
+{% load static %}
 <!doctype HTML>
 <html>
 
   <head>
       <script src="https://kit.fontawesome.com/58fb0d3b26.js"></script>
-
-      <style type="text/css">
-
-          .sidebar{
-            height: 100%;
-            width: 140px;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #494747;
-            overflow-x: hidden;
-            padding-top: 30px;
-            padding-bottom: 30px;
-          }
-
-          .sidebar a{
-            text-align: center;
-            text-decoration: none;
-            font-size: 18px;
-            display: block;
-            padding-bottom: 20px;
-            color: #F1F1F1;
-          }
-
-          .sidebar a:hover{
-            color: #2CDCF4;
-          }
-
-          .sidebar i{
-            text-align: center;
-            display: block;
-            padding-top: 20px;
-            padding-bottom: 5px;
-            color: #F1F1F1;
-          }
-
-          .sidebar label{
-            margin-top: 180px;
-            color: white;
-            font-size: 16px;
-          }
-
-          .main{
-              padding: 0px 10px;
-              background-color: #913CF7;
-          }
-
-      </style>
 
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -59,10 +11,12 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+      <link rel="stylesheet" type="text/css" href="{% static 'main/main.css' %}">
+
       <title>{% block title %}Expenses List{% endblock %}</title>
   </head>
 
-  <body>
+  <body class="text-center">
       {% block sidenav %}
       <div class="sidebar">
           <a href="/" class="btn btn-secondary btn-sm" role="button" aria-pressed="true">
@@ -75,28 +29,27 @@
           <div class="col text-center">
               {% if user.is_authenticated %}
               <label>User:[{{ user.get_username }}] </lable>
-              <a href="{% url 'logout'%}" class="btn btn-secondary">Logout</a>
+              <a href="{% url 'logout' %}" class="btn btn-secondary">Logout</a>
               {% else %}
               <label></lable>
-              <a href="{% url 'login'%}?next={{request.path}}" class="btn btn-secondary">Login</a>
+              <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
               {% endif %}
           </div>
 
       </div>
       {% endblock %}
 
-          <div name="content" class="main">
-              <div class="row justify-content-center">
-                  <div class="col-6">
-                      {% block contenttitle %}
-                      <h2 class="mt-2">My Site</h2>
-                      <hr class="mt-0 mb-4">
-                      {% endblock %}
+      {% block content %}
+             <div class="row justify-content-center">
+                <div class="col-6">
+                    {% block contenttitle %}
+                    <h2 class="mt-2">My Site</h2>
+                    <hr class="mt-0 mb-4">
+                    {% endblock %}
+
                   </div>
-                      {% block content %}
-                      {% endblock %}
-              </div>
-          </div>
+            </div>
+      {% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -105,6 +58,3 @@
   </body>
 
 </html>
-
-<!--
-<a href="{% url 'logout'%}?next={{request.path}}"   -->

@@ -1,24 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from .models import ExpensesList,Item
 from .forms import createnewlist
 
 # Create your views here.
 
-def home(response):
-    return render(response, "main/home.html", {})
+def home_view(request):
+    return render(request, 'main/home.html', {})
 
-def index(response, id):
+def index(request, id):
     ls = ExpensesList.objects.get(id=id)
 
-    if response.method == "POST":
-        print(response.POST)
+    if request.method == "POST":
+        print(request.POST)
 
-#        if response.POST.get("update"):
+#        if request.POST.get("update"):
 #            for item in ls.item_set.all():
-#                if response.POST.get("UpdateItemName") != "" and response.POST.get("UpdateItemPrice") != 0:
-#                    newName = response.POST.get("UpdateItemName")
-#                    newPrice = response.POST.get("UpdateItemPrice")
+#                if request.POST.get("UpdateItemName") != "" and request.POST.get("UpdateItemPrice") != 0:
+#                    newName = request.POST.get("UpdateItemName")
+#                    newPrice = request.POST.get("UpdateItemPrice")
 #
 #                    item.item_name = newName
 #                    item.price = newPrice
@@ -28,17 +29,17 @@ def index(response, id):
 #            else:
 #                    print("Please insert a valid name!")
 
-        if response.POST.get("delete"):
+        if request.POST.get("delete"):
             for item in ls.item_set.all():
-                if response.POST.get("c" + str(item.id)) == "checked":
+                if request.POST.get("c" + str(item.id)) == "checked":
                     d = ls.item_set.get(id=item.id)
                     d.delete()
                 else:
                     print("Please select a item to delete")
 
-        elif response.POST.get("newItem"):
-            text=response.POST.get("AddItem")
-            p=response.POST.get("AddPrice")
+        elif request.POST.get("newItem"):
+            text=request.POST.get("AddItem")
+            p=request.POST.get("AddPrice")
 
             if len(text) > 2:
                 ls.item_set.create(item_name=text, price=p)
@@ -46,23 +47,27 @@ def index(response, id):
                 print("Insert A Valid Data")
 
 
-    return render(response, "main/list.html", {"ls":ls})
+    return render(request, "main/list.html", {"ls":ls})
 
-def create(response):
-    if response.method == "POST":
-        form = createnewlist(response.POST)
+
+@login_required()
+def create(request):
+    if request.method == "POST":
+        form = createnewlist(request.POST)
 
         if form.is_valid():
             n = form.cleaned_data["name"]
-            response.user.ExpensesList_set.create(name="n")
+            request.user.ExpensesList_set.create(name="n")
 
 
-        return render(response, "main/create.html", {"form":form})
+        return render(request, "main/create.html", {"form":form})
 
     else:
         form = createnewlist()
 
-        return render(response, "main/create.html", {"form":form})
+        return render(request, "main/create.html", {"form":form})
 
-def list(response):
-    return render(response, "main/list.html", {})
+
+@login_required()
+def list(request):
+    return render(request, "main/list.html", {})

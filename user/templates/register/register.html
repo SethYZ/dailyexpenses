@@ -3,19 +3,24 @@
 
 {% block title %}Sign Up{% endblock %}
 
-{% block contenttitle %}
-<br><br><br><h2 class="mt-2">Create An Account</h2>
-<hr class="mt-0 mb-4">
-{% endblock %}
-
 {% block content %}
+  <div class="row justify-content-center">
+     <div class="col-5">
+
+      {% block contenttitle %}
+      <br><br><br><h2 class="mt-2">Create An Account</h2>
+      <hr class="mt-0 mb-4">
+      {% endblock %}
+
       <form class="form-group" method="post">
           {% csrf_token %}
           {{ form|crispy }}
-          <button type="submit" class="btn btn-success">Register</button>
-          <a href="/" class="btn btn-secondary">Back to Homepage</a>
+          <br><br><button type="submit" class="btn btn-success">Register</button>
+          <a href="main/home" class="btn btn-secondary">Back to Homepage</a>
       </form>
 
+     </div>
+  </div>
 {% endblock %}
 
 {% block sidenav %}

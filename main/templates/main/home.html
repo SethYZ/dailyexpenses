@@ -2,12 +2,32 @@
 
 {% block title %}DailyExpenses{% endblock %}
 
-  {% block contenttitle %}
-  <br><br><br><h2 class="mt-2 text-center">Start Using</h2>
-  {% endblock %}
+{% block content %}
 
-  {% block content %}
-  {% endblock %}
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Expenses List</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" href="#">Register</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Start using this page.</h1>
+        <p class="lead">Just a simple and beautiful home pages. </p>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Template by Newbie IT Students @Seth_LeeYingZheng referring to Bootstrap</p>
+        </div>
+      </footer>
+    </div>
+
+{% endblock %}
 
 {% block sidenav %}
 {% endblock %}
