@@ -6,15 +6,30 @@ from .forms import createnewlist
 
 # Create your views here.
 
+lists = [
+    {
+    'author': '',
+    'name': '',
+    'date_created': ''
+    }
+]
+
 def home_view(request):
     return render(request, 'main/home.html', {})
 
-def index(request, id):
-    ls = ExpensesList.objects.get(id=id)
+def index_view(request):
 
-    if request.method == "POST":
-        print(request.POST)
+    context = {
+        'lists' : ExpensesList.objects.all()
+    }
 
+    return render(request, "main/index.html", context)
+
+#    ls = ExpensesList.objects.get(id=id)
+#
+#    if request.method == "POST":
+#        print(request.POST)
+#
 #        if request.POST.get("update"):
 #            for item in ls.item_set.all():
 #                if request.POST.get("UpdateItemName") != "" and request.POST.get("UpdateItemPrice") != 0:
@@ -29,25 +44,22 @@ def index(request, id):
 #            else:
 #                    print("Please insert a valid name!")
 
-        if request.POST.get("delete"):
-            for item in ls.item_set.all():
-                if request.POST.get("c" + str(item.id)) == "checked":
-                    d = ls.item_set.get(id=item.id)
-                    d.delete()
-                else:
-                    print("Please select a item to delete")
+#        if request.POST.get("delete"):
+#            for item in ls.item_set.all():
+#                if request.POST.get("c" + str(item.id)) == "checked":
+#                    d = ls.item_set.get(id=item.id)
+#                    d.delete()
+#                else:
+#                    print("Please select a item to delete")
 
-        elif request.POST.get("newItem"):
-            text=request.POST.get("AddItem")
-            p=request.POST.get("AddPrice")
-
-            if len(text) > 2:
-                ls.item_set.create(item_name=text, price=p)
-            else:
-                print("Insert A Valid Data")
-
-
-    return render(request, "main/list.html", {"ls":ls})
+#        elif request.POST.get("newItem"):
+#            text=request.POST.get("AddItem")
+#            p=request.POST.get("AddPrice")
+#
+#            if len(text) > 2:
+#                ls.item_set.create(item_name=text, price=p)
+    #        else:
+#                print("Insert A Valid Data")
 
 
 @login_required()
@@ -65,7 +77,7 @@ def create(request):
     else:
         form = createnewlist()
 
-        return render(request, "main/create.html", {"form":form})
+        return render(request, "main/index.html", {"form":form})
 
 
 @login_required()

@@ -1,3 +1,16 @@
+.col-3, .col-4, .col-5, .col-6 {
+    max-width: 100%;
+}
+
+.row {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: auto;
+    margin-left: auto;
+    display: contents;
+    flex: 0;
+}
+
 .sidebar{
     height: 100%;
     width: 140px;
@@ -5,7 +18,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #494747;
+    background-color: #969696;
     overflow-x: hidden;
     padding-top: 30px;
     padding-bottom: 30px;
@@ -17,7 +30,7 @@
     font-size: 18px;
     display: block;
     padding-bottom: 20px;
-    color: #F1F1F1;
+    color: #000000;
 }
 
 .sidebar a:hover{
@@ -29,7 +42,7 @@
     display: block;
     padding-top: 20px;
     padding-bottom: 5px;
-    color: #F1F1F1;
+    color: #000000;
 }
 
 .sidebar label{
@@ -50,10 +63,9 @@
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
-  color: #333;
   text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: .05rem solid #fff;
+  background-color: #d4d4d4;
+  border: .05rem solid #d4d4d4;
 }
 
 
@@ -65,18 +77,16 @@ html,
 body {
   height: 100%;
   background-color: #333;
+  margin-top: 5rem;
 }
 
 body {
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex-pack: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-  color: #fff;
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+    display: -ms-flexbox;
+    display: -webkit-box;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    color: #fff;
+    text-align: center;
 }
 
 .cover-container {
@@ -128,20 +138,45 @@ body {
 
 
 /*
- * Cover
- */
-.cover {
-  padding: 0 1.5rem;
-}
-.cover .btn-lg {
-  padding: .75rem 1.25rem;
-  font-weight: 700;
-}
-
-
-/*
  * Footer
  */
 .mastfoot {
   color: rgba(255, 255, 255, .5);
+}
+
+
+.content-section {
+  background: #ffffff;
+  padding:  10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 2px;
+  margin: auto;
+}
+
+.article-title {
+  color: #000000;
+}
+
+a.article-title:hover {
+  color: #07B8FF;
+  text-decoration: none;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+h2{
+  color: white;
+}
+
+.media-body h2{
+    color: #000000;
 }

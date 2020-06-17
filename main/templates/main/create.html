@@ -7,7 +7,7 @@
       <div class="col-3">
 
       {% block contenttitle %}
-      <br><br><h2>Create New List</h2><br>
+      <br><br><h2>Create New List</h2>
       <hr class="mt-0 mb-4">
       {% endblock %}
 
@@ -16,7 +16,7 @@
           {{form.as_p}}
 
           <button type="submit" name="create" class="btn btn-primary">Create</button>
-          <a href="{% url 'home' %}" class="btn btn-secondary" role="button">Back to Homepage</a>
+          <a href="{% url 'main-home' %}" class="btn btn-secondary" role="button">Back to Homepage</a>
 
       </form>
 

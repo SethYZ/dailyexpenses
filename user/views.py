@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from .forms import RegisterForm
+from django.contrib import messages
 from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def register(request):
@@ -9,8 +11,8 @@ def register(request):
 
         if form.is_valid():
             form.save()
-        messages.success(request, f'Account Created Successfully!')
-        return redirect('login')
+            messages.success(request, f'Account Created Successfully!')
+            return redirect('main-home')
 
     else:
         form = RegisterForm()
@@ -18,9 +20,6 @@ def register(request):
     return render(request, "register/register.html", {"form":form})
 
 
-def login(request):
-    return render(request, "registration/login.html", {})
-
-
-def logout(request):
-    return render(request, "registration/logged_out.html")
+@login_required
+def profile(request):
+    return render(request, 'register/profile.html')

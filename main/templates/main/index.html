@@ -1,15 +1,36 @@
-{% extends 'main.base.html' %}
+{% extends 'main/base.html' %}
 
-{% block title %}Homepage{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
+<div class="row justify-content-center">
+   <div class="col-6">
+    {% block contenttitle %}
+    <br><h2 class="mt-2 text-center">Expenses List</h2>
+    <hr class="mt-0 mb-4"><br>
+    {% endblock %}
 
-  {% block contenttitle %}
-  <br><br><br><h2 class="mt-2 text-center">Start Using</h2>
-  {% endblock %}
+    {% for list in lists %}
+        <article class="media content-section text-center">
+            <div class="media-body">
+                <h3><a class="article-title" href="#">{{ list.name }}</a></h3>
+                <small class="text-muted">{{ list.date_created }}</small>
+            </div>
+        </article>
+    {% endfor %}
 
-{% endblock %}
+    <br><br><br><br><h2 class="mt-2 text-center">Create New List</h2>
+    <hr class="mt-0 mb-4">
 
+    <form action="{% url 'main-create' %}" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
 
-{% block sidenav %}
+        <button type="submit" name="create" class="btn btn-primary">Create</button>
+        <a href="{% url 'main-home' %}" class="btn btn-secondary" role="button">Back to Homepage</a>
+
+    </form>
+
+    </div>
+</div>
 {% endblock %}

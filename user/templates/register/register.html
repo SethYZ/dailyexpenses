@@ -8,7 +8,7 @@
      <div class="col-5">
 
       {% block contenttitle %}
-      <br><br><br><h2 class="mt-2">Create An Account</h2>
+      <h2 class="mt-2">Create An Account</h2>
       <hr class="mt-0 mb-4">
       {% endblock %}
 
@@ -16,7 +16,7 @@
           {% csrf_token %}
           {{ form|crispy }}
           <br><br><button type="submit" class="btn btn-success">Register</button>
-          <a href="main/home" class="btn btn-secondary">Back to Homepage</a>
+          <a href="{% url 'main-home' %}" class="btn btn-secondary">Back to Homepage</a>
       </form>
 
      </div>
