@@ -85,7 +85,7 @@ body {
     display: -webkit-box;
     -ms-flex-pack: center;
     -webkit-box-pack: center;
-    color: #fff;
+    color: white;
     text-align: center;
 }
 
@@ -144,13 +144,16 @@ body {
   color: rgba(255, 255, 255, .5);
 }
 
+.content-section fieldset{
+  color: black;
+}
 
 .content-section {
   background: #ffffff;
   padding:  10px 20px;
   border: 1px solid #dddddd;
   border-radius: 2px;
-  margin: auto;
+  color: black;
 }
 
 .article-title {
@@ -178,5 +181,9 @@ h2{
 }
 
 .media-body h2{
-    color: #000000;
+  color: #000000;
+}
+
+.profilestyle label, legend{
+  color: black;
 }

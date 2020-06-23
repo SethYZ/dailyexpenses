@@ -1,21 +1,29 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView,DetailView
 from .models import ExpensesList,Item
 from .forms import createnewlist
 
 # Create your views here.
 
-lists = [
-    {
-    'author': '',
-    'name': '',
-    'date_created': ''
-    }
-]
-
 def home_view(request):
     return render(request, 'main/home.html', {})
+
+
+class ExpensesListView(ListView):
+    model = ExpensesList
+    template_name = 'main/index.html'
+    context_object_name = 'lists'
+    ordering = ['-date_created']
+
+
+class ExpensesDetailView(DetailView):
+    model = Item
+    template_name = 'main/list.html'
+
+    queryset = Item.objects.all()
+
 
 def index_view(request):
 
